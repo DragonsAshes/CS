@@ -1,0 +1,33 @@
+void initialize_fat();
+
+	on déclare tout les blocs de fat à 0xffff ( bloc libre )
+	place freeblock à BLOCNUM
+	initialise obj
+
+struc objet *rechercher_objet (char* nom);
+	
+	Parcourt de la liste chainée
+	si l'objet courant est le même que celui en argument on return celui-ci
+	retourne NULL si rien a été trouvé
+
+struct objet *creer_objet(char *nom, unsigned short auteur,unsigned int taille, char *data);
+
+	unicité du nom du bloc et vérification d'assez d'espace mémoire à allouer
+	Création d'un objet dans la liste
+	alloue des blocs fat en les linkant
+	attribue les données correspondantes
+	mets à jour freeblock
+
+int supprimer_objet(char *nom);
+
+	Recherche du bonne objet
+	Depuis cet objet, on lie le précédent objet avec le suivant
+	On libère l'espace de l'objet
+
+void supprimer_tout();
+
+	Libère l'espace de tout les objets de la liste
+
+int lire_objet(struct objet *o,char **data);
+
+	Place le contenu d'un objet dans un tableau à allocation dynamique 

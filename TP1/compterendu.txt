@@ -1,0 +1,77 @@
+COMPTE RENDU TP1 DE C:
+
+Partie 1 : Bubblesort
+
+Question 5 :
+
+tab1 : 1225
+tab2 : 1225
+tab3 : 1225
+ref : 1225
+
+Question 6 :
+
+Meilleur des cas : O(n²)
+Pire des cas : O(n²)
+
+Cet algorithme n'est donc pas adaptatif puisque la complexité du meilleure des cas est la même que celui du pire des cas.
+
+Question 7 : 
+
+O(1)
+Car l'algorithme n'a pas d'espace mémoire supplémentaire a allouer
+Oui cet algorithme est stable
+
+
+Partie 2 :
+
+Question 2 :
+
+tab1 : 682
+tab2 : 1216
+tab3 : 63
+ref : 0
+
+Question 3 :
+
+Meilleur des cas : O(n)
+Pire des cas : O(n^3)
+
+Cet algorithme est donc adaptatif puisqu'il s'adapte au contexte. En effet on peut observer que la complexité du meilleure des cas est différente de celle du pire des cas.
+
+Question 4 :
+
+O(1)
+Car l'algorithme n'a pas d'espace mémoire supplémentaire a allouer
+Oui cet algorithme est stable
+
+Partie 3 :
+
+Question 1 :
+
+int* tmp = tab;  définit tmp comme étant l'adresse de tab
+int tmp[n]; Cette déclaration n'existe pas en C
+
+Question 2 :
+
+int* tmp = malloc(n*sizeof(int));
+
+Question 5 :
+
+tab1 : 300
+tab2 : 300
+tab3 : 300
+ref : 300
+
+Question 6 :
+
+Meilleur des cas : O(n²)
+Pire des cas : O(n²)
+
+Cet algorithme n'est donc pas adaptatif
+
+Question 7 :
+
+O(n)
+Car on utilise malloc dans la fonction
+Oui cet algorithme est stable

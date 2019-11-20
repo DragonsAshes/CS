@@ -1,0 +1,80 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "fat.h"
+
+void afficherFAT(int size)
+{
+	printf("[ ");
+	for(int i = 0; i < size; i++)
+	{
+		printf("0x%04x ", FAT[i]);
+	}
+	printf("]\n");
+}
+
+
+void print_volume(int index, int size)
+{
+	printf("[ ");
+	for(int i = index; i - index < size; i++)
+	{
+		printf("0x%02x ", volume[i]);
+	}
+	printf("]\n");
+}
+
+char* data = "totopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazoutotopiscinecazou";
+char* data2 = "420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou420cazou\n";
+char* data3 = "PISCINE\n";
+char* data4 = "piscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscinepiscine\n";
+
+unsigned short seb = 1;
+struct objet * pointeur;
+
+
+int main()
+{
+	char* tab;
+	initialise_fat();
+
+	printf("[+] Creation du fichier toto.txt\n");
+	creer_objet("toto.txt", seb, strlen(data), data);
+	afficherFAT(10);
+	listeAffiche(obj);
+	
+	printf("\n[+] Affichage de l'objet\n");
+	pointeur = rechercher_objet("toto.txt");
+	lire_objet( pointeur, &tab);
+	printf("%s\n", tab);
+	free(tab);
+
+
+	printf("\n[+] Creation d'un deuxième fichier toto.txt\n");
+	creer_objet("toto.txt", seb, strlen(data3), data3);
+	afficherFAT(10);
+	listeAffiche(obj);	
+
+
+	printf("\n[+] Creation du fichier cazou.txt\n");
+	creer_objet("cazou.txt", seb, strlen(data2), data2);
+	afficherFAT(10);
+	listeAffiche(obj);
+
+	printf("\n[+] Suppression du fichier toto.txt\n");
+	supprimer_objet("toto.txt");
+	afficherFAT(10);
+	listeAffiche(obj);
+
+	printf("\n[+] Creation d'un gros fichier qui ne pourra pas être à la suite dans le FAT\n");
+	creer_objet("gros.txt", seb, strlen(data4), data4);
+	afficherFAT(11);
+	listeAffiche(obj);
+
+	printf("\n[+] Suppression de tous les fichiers\n");
+	supprimer_tout();
+	afficherFAT(10);
+	listeAffiche(obj);
+
+}
+	

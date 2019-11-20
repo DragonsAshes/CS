@@ -1,0 +1,12 @@
+Il faut définir les cas scpéciaux
+	exemple: division par zéro la valeur du serpent vaut alors MAX
+
+définition des différentes opérations en fonction de l'opérateur lu
+
+On place les opérandes dans une pile et les opérateurs dans une autre
+
+On vérifie qu'on a des valeurs possibles dans les piles
+
+On réalise les calculs (s vaut le résultat du calcul)
+
+Score vaudra soit MAX soit |s-666|
